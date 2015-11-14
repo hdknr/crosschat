@@ -1,0 +1,6 @@
+django
+mysqlclient
+paver
+requests
+psutil
+crossbar
