@@ -23,7 +23,7 @@ class Topic(models.Model):
         verbose_name_plural = _('Topic')
 
     def __unicode__(self):
-        return self.name
+        return self.uri
 
 
 class TopicUser(models.Model):
