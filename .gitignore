@@ -1,5 +1,6 @@
 trunk
 *.pyc
+*.pid
 *.sqlite3
 .*.swp
 .DS_Store
