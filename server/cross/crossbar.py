@@ -46,10 +46,10 @@ def user_from_details(realm, authid, details):
             print(traceback.format_exc())
 
 
-def get_topic_user(session, topic, action):
+def get_topic_user(session, uri, action):
     from cross.models import TopicUser
     return TopicUser.objects.filter(
-        topic__name=topic,
+        topic__uri=uri,
         user__user__username=session.get('authid', '')).first()
 
 

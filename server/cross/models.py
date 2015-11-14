@@ -16,7 +16,7 @@ class SocketUser(models.Model):
 
 
 class Topic(models.Model):
-    name = models.CharField(_('Topic Name'), max_length=50)
+    uri = models.CharField(_('Topic URI'), max_length=50)
 
     class Meta:
         verbose_name = _('Topic')
