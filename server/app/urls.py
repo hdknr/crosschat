@@ -16,6 +16,10 @@ Including another URLconf
 from django.conf.urls import include, url
 from django.contrib import admin
 
+
+APPS = ['chat', ]
+
 urlpatterns = [
+    url(r'^{0}/'.format(i), include('{0}.urls'.format(i))) for i in APPS] + [
     url(r'^admin/', include(admin.site.urls)),
 ]
