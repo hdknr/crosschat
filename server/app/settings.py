@@ -103,4 +103,5 @@ STATIC_URL = '/static/'
 #########
 INSTALLED_APPS += (
     'app',
+    'cross',
 )

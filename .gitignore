@@ -17,6 +17,7 @@ from_server3
 assets
 ssl
 IPAexfont00301
-web/upload
-web/images
+server/upload
+server/images
 tests/*.json
+migrations
