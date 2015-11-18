@@ -32,6 +32,18 @@
                   {
                      "name": "frontend",
                      "authorizer": "jp.lafoglia.authz"
+                  },
+                  {
+                     "name": "anonymous",
+                     "permissions": [
+                        {
+                           "uri": "*",
+                           "publish": true,
+                           "subscribe": true,
+                           "call": true,
+                           "register": true
+                        }
+                     ]
                   }
                ]
             }
@@ -55,6 +67,14 @@
                            "type": "dynamic",
                            "authenticator": "jp.lafoglia.authn"
                         }
+                     }
+                  },
+                  "publish": {
+                     "type": "publisher",
+                     "realm": "realm1",
+                     "role": "anonymous",
+                     "options": {
+                        "debug": true
                      }
                   }
                }
