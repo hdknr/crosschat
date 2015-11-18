@@ -74,7 +74,8 @@
                      "realm": "realm1",
                      "role": "anonymous",
                      "options": {
-                        "debug": true
+                        "debug": true,
+                        "require_ip": ["10.0.2.0/255.255.255.0", "127.0.0.1"]
                      }
                   }
                }
