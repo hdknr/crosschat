@@ -46,13 +46,6 @@ def user_from_details(realm, authid, details):
             print(traceback.format_exc())
 
 
-def get_topic_user(session, uri, action):
-    from cross.models import TopicUser
-    return TopicUser.objects.filter(
-        topic__uri=uri,
-        user__user__username=session.get('authid', '')).first()
-
-
 # http://crossbar.io/docs/WAMP-CRA-Authentication/#dynamic-credentials
 
 class AppAuthn(ApplicationSession):
@@ -89,5 +82,7 @@ class AppAuthz(ApplicationSession):
                   "failed to register authorizer procedure ({})".format(e))
 
     def authorize(self, session, uri, action):
-        topicuser = get_topic_user(session, uri, action)
-        return topicuser and True or False
+        from cross.models import Topic
+        username = session.get('authid', '')
+        topic = Topic.objects.filter(uri=uri).first()
+        return topic and topic.is_authorized(username, action) or False

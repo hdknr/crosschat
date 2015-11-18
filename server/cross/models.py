@@ -25,6 +25,28 @@ class Topic(models.Model):
     def __unicode__(self):
         return self.uri
 
+    @property
+    def instance(self):
+        def _cache():
+            self._instance = None
+            for i in self._meta.related_objects:
+                if not issubclass(i.related_model, self._meta.model):
+                    continue
+                self._instance = i.related_model.objects.filter(
+                    **{i.field_name: self.id}).first()
+                if self._instance:
+                    break
+            self._instance = self._instance or self
+            return self._instance
+
+        return getattr(self, '_instance', _cache())
+
+    def is_authorized(self, username, *args, **kwargs):
+        user = User.objects.filter(username=username).first()
+        if user and user.is_staff:
+            return True
+        return self.topicuser_set.filter(user__user=user).exists()
+
 
 class TopicUser(models.Model):
     topic = models.ForeignKey(Topic)
