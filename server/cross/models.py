@@ -6,6 +6,8 @@ from django.utils.translation import ugettext_lazy as _
 class SocketUser(models.Model):
     user = models.OneToOneField(User)
     key = models.CharField(_('User Key'), max_length=50)
+    role = models.CharField(_('Role'), max_length=20, default='frontend')
+    is_token = models.BooleanField(_('Key Is Token'), default=False)
 
     class Meta:
         verbose_name = _('Socket User')
@@ -13,6 +15,12 @@ class SocketUser(models.Model):
 
     def __unicode__(self):
         return self.user and self.user.username
+
+    def authinfo(self):
+        return {
+            'username': self.user.username,
+            'role': self.role,
+            'secret': self.key}
 
 
 class Topic(models.Model):

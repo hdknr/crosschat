@@ -32,15 +32,19 @@ def django_user(cookie_string):
 
 def user_from_details(realm, authid, details):
     # TODO : realm check, username == authid check
+    from cross.models import SocketUser
+    socket_user = SocketUser.objects.filter(user__username=authid).first()
+
+    if socket_user and socket_user.is_token:
+        return socket_user.authinfo()
+
+    print("@@@@", authid)
     cookie_string = details.get('transport', {}).get(
         'http_headers_received', {}).get('cookie', None)
-    if cookie_string:
+    if socket_user and cookie_string:
         try:
             user = django_user(cookie_string)
-            if user:
-                return {
-                    'username': user.username, 'role': 'frontend',
-                    'secret': user.socketuser.key}
+            return user and user.socketuser.authinfo()
         except:
             import traceback
             print(traceback.format_exc())
