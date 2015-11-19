@@ -77,7 +77,20 @@
                         "debug": true,
                         "require_ip": ["10.0.2.0/255.255.255.0", "127.0.0.1"]
                      }
-                  }
+                  },
+                  "publish-signed": {
+                     "type": "publisher",
+                     "realm": "realm1",
+                     "role": "anonymous",
+                     "options": {
+                        "key": "systemuser",
+                        "secret": "sharedsecret",
+                        "post_body_limit": 8192,
+                        "timestamp_delta_limit": 10,
+                        "require_ip": ["10.0.2.0/255.255.255.0", "127.0.0.1"],
+                        "require_tls": false
+                    }
+                 }
                }
             }
          ],

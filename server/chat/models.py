@@ -22,3 +22,12 @@ class Room(Topic):
         if user and user.has_perm('chat.join_anyroom'):
             return True
         return self.topicuser_set.filter(user__user=user).exists()
+
+
+class Announce(models.Model):
+    room = models.ForeignKey(Room)
+    message = models.TextField(_('Announce Text'))
+
+    class Meta:
+        verbose_name = _('Announce')
+        verbose_name_plural = _('Announce')
