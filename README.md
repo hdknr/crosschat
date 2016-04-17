@@ -83,7 +83,7 @@ $ python manage.py runserver 0.0.0.0:9000
 # Configure
 
 - Create [Room](https://github.com/hdknr/crosschat/blob/master/server/chat/models.py#L7)
-- Create [TokpicUser](https://github.com/hdknr/crosschat/blob/master/server/cross/models.py#L59)  for [SocketUser](https://github.com/hdknr/crosschat/blob/master/server/cross/models.py#L6) and [Topic](https://github.com/hdknr/crosschat/blob/master/server/cross/models.py#L26)
+- Create [TopicUser](https://github.com/hdknr/crosschat/blob/master/server/cross/models.py#L59)  for [SocketUser](https://github.com/hdknr/crosschat/blob/master/server/cross/models.py#L6) and [Topic](https://github.com/hdknr/crosschat/blob/master/server/cross/models.py#L26)
 
 ## Topic
 
@@ -91,9 +91,9 @@ $ python manage.py runserver 0.0.0.0:9000
 
 ## SocketUser 
 
-- Created or updated when a Django User is authenticated.
+- Created or updated [when a Django User is authenticated](https://github.com/hdknr/crosschat/blob/master/server/cross/models.py#L74).
 
 
 ## Announce
 
-- Save an Announce, then broadcasted to all TopickUsers bound to the Room.
+- Save an [Announce](https://github.com/hdknr/crosschat/blob/master/server/chat/models.py#L27), then broadcasted to all TopickUsers bound to the Room.
